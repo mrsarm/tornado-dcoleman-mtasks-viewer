@@ -27,13 +27,27 @@ class MainHandler(BaseHandler):
             response = await http_client.fetch(mtasks_url(task_number))
         except HTTPClientError as e:
             if e.code == 404:
-                return self.error(404, "Task Order Not Found")
+                return self.error(404, "Order Not Found")
             else:
                 return self.error(400, exc_info=e)
         except Exception as e:
             return self.error(500, exc_info=e)
         order = json_decode(response.body)
-        return self.render("index.html", title=title(f"Task #{task_number}"), order=order)
+        state = order['state']
+        assigned_to = self.get_assigned_to(order.get('user'))
+        return self.render("index.html",
+                           title=title(f"Task #{task_number}"),
+                           order=order,
+                           state=state,
+                           assigned_to=assigned_to)
+
+    def get_assigned_to(self, user):
+        if not user:
+            return ""
+        full_name = " ".join(
+            filter(None, (user.get("first_name"), user.get("last_name")))
+        )
+        return full_name if full_name else user["username"]
 
 
 class NotFoundHandler(BaseHandler):

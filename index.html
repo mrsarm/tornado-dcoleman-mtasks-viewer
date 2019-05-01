@@ -1,22 +1,144 @@
-<html>
-<head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      body {
+        background-color: #eee;
+      }
+      form {
+        margin-top: 35px;
+      }
+      form label {
+        font-weight: bold;
+      }
+      h2 {
+        margin: 15px 0;
+      }
+      .container {
+        padding: 30px;
+      }
+      .breadcrumb {
+        background-color: #ca4d87;
+        color: #eee;
+      }
+      .breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+        color: #ccc;
+      }
+      .breadcrumb-item.active {
+        color: white;
+      }
+      .breadcrumb-item.active strong {
+        border-bottom: 2px dashed;
+      }
+      .breadcrumb-item.dismissed {
+        color: darkred;
+      }
+    </style>
     <title>{{ title }}</title>
-</head>
-<body>
-<h3>
-    Task Number: #{{ order['number'] }}
-</h3>
-<p>
-    <label>Title: </label>
-    <span>{{ order['title'] }}</span>
-</p>
-<p>
-    <label>Customer: </label>
-    <span>{{ order['partner']['name'] }}</span>
-</p>
-<p>
-    <label>Assigned to: </label>
-    <span>{{ order['user']['username'] }}</span>
-</p>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Order Status — Django Coleman</h1>
+      <p class="lead">A not-so friendly viewer</p>
+
+      <form>
+        <h2 class="text-right">Order Number: #{{ order['number'] }}</h2>
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item {% if state == 'to-do' %}active{% end %}">
+              {% if state == 'to-do' %}
+                <strong>To Do</strong>
+              {% else %}
+                To Do
+              {% end %}
+            </li>
+            <li class="breadcrumb-item {% if state == 'in_progress' %}active{% end %}">
+              {% if state == 'in_progress' %}
+                <strong>In Progress</strong>
+              {% else %}
+                In Progress
+              {% end %}
+            </li>
+            <li class="breadcrumb-item {% if state == 'blocked' %}active{% end %}">
+              {% if state == 'blocked' %}
+                <strong>Blocked</strong>
+              {% else %}
+                Blocked
+              {% end %}
+            </li>
+            <li class="breadcrumb-item {% if state == 'done' %}active{% end %}">
+              {% if state == 'done' %}
+                <strong>Done</strong>
+              {% else %}
+                Done
+              {% end %}
+            </li>
+            {% if state == 'dismissed' %}
+              <li class="breadcrumb-item dismissed active" aria-current="page">
+                <strong>Dismissed</strong>
+              </li>
+            {% end %}
+          </ol>
+        </nav>
+
+        <div class="container">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label col-form-label-lg">Title</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control-plaintext form-control-lg"
+                     value="{{ order['title'] }}">
+            </div>
+          </div>
+          {% if order['partner'] %}
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Customer</label>
+              <div class="col-sm-9">
+                <input type="text" readonly class="form-control-plaintext"
+                       value="{{ order['partner']['name'] }}">
+              </div>
+            </div>
+          {% end %}
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Assigned to</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control-plaintext"
+                     value="{{ assigned_to }}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Create at</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control-plaintext"
+                     value="{{ order['created_at'].split('T')[0] }}">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Description</label>
+            <div class="col-sm-9">
+              {% for line in order['description'].split('\n') %}
+                <p>{{ line }}</p>
+              {% end %}
+            </div>
+          </div>
+          {% if order['resolution'] %}
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Resolution</label>
+              <div class="col-sm-9">
+                {% for line in order['resolution'].split('\n') %}
+                  <p>{{ line }}</p>
+                {% end %}
+              </div>
+            </div>
+          {% end %}
+
+        </div>
+
+      </form>
+    </div>
+  </body>
 </html>

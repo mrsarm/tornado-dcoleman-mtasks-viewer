@@ -1,10 +1,39 @@
-<html>
-<head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      body {
+        background-color: #eee;
+      }
+      h2 {
+        margin: 15px 0;
+      }
+      .container {
+        padding: 30px;
+      }
+      .alert {
+        margin-top: 40px;
+      }
+    </style>
     <title>{{ title }}</title>
-</head>
-<body>
-<h3>
-    {{ error }}
-</h3>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Order Status — Django Coleman</h1>
+      <p class="lead">A not-so friendly viewer</p>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Ups!</h4>
+        <p>
+          <strong>{{ error }}</strong>
+        </p>
+        <hr>
+        <p class="mb-0">
+          Contact with the Administrator if the problem persist.
+        </p>
+      </div>
+    </div>
+  </body>
 </html>
