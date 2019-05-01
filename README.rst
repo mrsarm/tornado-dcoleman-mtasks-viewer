@@ -44,7 +44,16 @@ Run changing the Django Coleman endpoint with::
 Access the application
 ----------------------
 
-If the order number is *123*, the URL is: http://localhost:8888/123
+If the order number is *123*, the URL to access
+it is: http://localhost:8888/123?t=porgs
+
+The argument ``t`` is the master token, by default ``porgs``...
+
+.. image:: https://media.giphy.com/media/3ohhwqOVlEbBxEbss0/giphy.gif
+
+... but each time Django Coleman creates an order, it send an
+email with an unique token so user cannot reuse the token to
+see other orders.
 
 
 About
