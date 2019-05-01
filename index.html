@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+<h3>
+    Task Number: #{{ order['number'] }}
+</h3>
+<p>
+    <label>Title: </label>
+    <span>{{ order['title'] }}</span>
+</p>
+<p>
+    <label>Customer: </label>
+    <span>{{ order['partner']['name'] }}</span>
+</p>
+<p>
+    <label>Assigned to: </label>
+    <span>{{ order['user']['username'] }}</span>
+</p>
+</body>
+</html>

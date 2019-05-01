@@ -1,0 +1,31 @@
+# Python compiled byte code
+*.pyc
+
+# Staticfiles
+staticfiles/
+
+# Log files
+*.log
+
+# IDE files
+.idea
+*.iml
+*.ipr
+*.iws
+.settings
+.project
+.pydevproject
+.directory
+
+# Script for different environments
+prod.sh
+dev.sh
+
+# Static files collected
+/static
+
+# Virtual environments
+venv/
+venv?.?/
+.venv*/
+
