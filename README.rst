@@ -51,9 +51,9 @@ The argument ``t`` is the master token, by default ``porgs``...
 
 .. image:: https://media.giphy.com/media/3ohhwqOVlEbBxEbss0/giphy.gif
 
-... but each time Django Coleman creates an order, it send an
-email with an unique token so user cannot reuse the token to
-see other orders.
+... but each time Django Coleman creates an order, it sends an
+email with the order URL signed with a unique token so users cannot
+reuse the token to see other orders.
 
 
 About
