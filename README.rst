@@ -1,7 +1,8 @@
 (Tornado) Django Coleman Viewer
 ===============================
 
-.. image:: docs/source/_static/dcoleman-viewer.png
+.. image:: docs/source/_static/img/dcoleman-viewer.png
+   :scale: 50 %
 
 **IN PROGRESS**: Simple web application to view task orders from
 `Django Coleman <https://github.com/mrsarm/django-coleman>`_,
