@@ -17,15 +17,17 @@ Requirements
 * Tornado framework installed (tested with version 6)
 * Django Coleman running at the URL pointed
   by the ``DCOLEMAN_ENDPOINT`` environment
-  variable (by default uses ``http://localhost:8000/api/v1``)
+  variable (by default it uses ``http://localhost:8000/api/v1``)
 
 
 Install and Run
 ---------------
 
-Install ``tornado`` with (use virtual environments!)::
+Install ``tornado`` with::
 
    $ pip3 install tornado
+
+(use virtual environments!)
 
 Run with::
 
@@ -39,7 +41,7 @@ Run changing the Django Coleman endpoint with::
 Access the application
 ----------------------
 
-If the order number is 123, the URL is: http://localhost:8888/123
+If the order number is *123*, the URL is: http://localhost:8888/123
 
 
 About
