@@ -118,6 +118,13 @@
             </div>
           </div>
           <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Deadline</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control-plaintext"
+                     value="{{ deadline }}">
+            </div>
+          </div>
+          <div class="form-group row">
             <label class="col-sm-3 col-form-label">Description</label>
             <div class="col-sm-9">
               {% for line in order['description'].split('\n') %}
