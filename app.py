@@ -29,6 +29,8 @@ class MainHandler(BaseHandler):
         token = self.get_argument("t", None)
         if not token:
             return self.error(401, "Unauthorized Access")
+        if not self.is_valid_token(task_number, token):
+            return self.error(401, "Invalid Authorization Code")
         http_client = AsyncHTTPClient()
         try:
             response = await http_client.fetch(mtasks_url(task_number))
@@ -40,15 +42,15 @@ class MainHandler(BaseHandler):
         except Exception as e:
             return self.error(500, exc_info=e)
         order = json_decode(response.body)
-        if not self.is_valid_token(order, token):
-            return self.error(401, "Invalid Authorization Code")
         state = order['state']
         assigned_to = self.get_assigned_to(order.get('user'))
         created_at = self.get_created_at(order.get('created_at'))
+        deadline = self.get_deadline(order.get('deadline'))
         return self.render("index.html",
                            title=title(f"Task #{task_number}"),
                            order=order,
                            created_at=created_at,
+                           deadline=deadline,
                            state=state,
                            assigned_to=assigned_to)
 
@@ -66,22 +68,26 @@ class MainHandler(BaseHandler):
         return datetime.datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%S.%fZ") \
                                 .strftime("%B %d, %Y")
 
-    def is_valid_token(self, order, token_url):
+    def get_deadline(self, deadline):
+        if not deadline:
+            return ""
+        return datetime.datetime.strptime(deadline, "%Y-%m-%d") \
+                                .strftime("%B %d, %Y")
+
+    def is_valid_token(self, order_number, token_url):
         """
         Verifies whether the token is valid or not.
         It uses the same algorithm used by Django Coleman to
         generates the token using as input a salt code and
-        some immutables fields from the order (the ID number and
-        the date the order was created)
+        the Order Number
 
         See: ``mtasks.models.Task#get_tasks_viewer_url`` from the
              Django Coleman project
         """
         if master_t and token_url == master_t:  # Master Token is Magic !
             return True
-        created_at_as_iso = order['created_at']
-        pk = int(order['number'])   # Removes the leading zeros
-        token = "{}-{}-{}".format(salt, pk, created_at_as_iso)
+        pk = int(order_number)      # Removes the leading zeros
+        token = "{}-{}".format(salt, pk)
         token = sha1(token.encode('utf-8')).hexdigest()
         return token == token_url
 
