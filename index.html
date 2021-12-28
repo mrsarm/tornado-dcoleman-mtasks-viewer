@@ -37,6 +37,9 @@
       .breadcrumb-item.dismissed {
         color: darkred;
       }
+      ol.in_progress .breadcrumb-item.active {
+        color: #0e0;
+      }
     </style>
     <title>{{ title }}</title>
   </head>
@@ -49,7 +52,7 @@
         <h2 class="text-right">Order Number: #{{ order['number'] }}</h2>
 
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
+          <ol class="breadcrumb {{ state }}">
             <li class="breadcrumb-item {% if state == 'to-do' %}active{% end %}">
               {% if state == 'to-do' %}
                 <strong>To Do</strong>
