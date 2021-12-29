@@ -17,7 +17,7 @@ Requirements
 ------------
 
 * Python 3.6+
-* Tornado framework installed (tested with version 6)
+* Tornado framework installed (tested with version 6 and 6.1)
 * Django Coleman running at the URL pointed
   by the ``DCOLEMAN_ENDPOINT`` environment
   variable (by default it uses ``http://localhost:8000/api/v1``)
@@ -56,11 +56,25 @@ email with the order URL signed with a unique token so users cannot
 reuse the token to see other orders.
 
 
+Settings
+--------
+
++-------------------------------------+----------------------------------+--------------------------------------------------------------+
+| **Environment variable**            | **Default value**                | **Description**                                              |
++-------------------------------------+----------------------------------+--------------------------------------------------------------+
+| ``DCOLEMAN_ENDPOINT``               | ``http://localhost:8000/api/v1`` | Django Coleman API URL                                       |
++-------------------------------------+----------------------------------+--------------------------------------------------------------+
+| ``DCOLEMAN_MASTER_TOKEN``           | ``porgs``                        | Master token (**CHANGE IT** in production)                   |
++-------------------------------------+----------------------------------+--------------------------------------------------------------+
+| ``DCOLEMAN_TASKS_VIEWER_HASH_SALT`` | ``1two3``                        | Same value than ``TASKS_VIEWER_HASH_SALT`` in Django Coleman |
++---------------------------+---------+----------------------------------+--------------------------------------------------------------+
+
+
 About
 -----
 
 **Project**: https://github.com/mrsarm/tornado-dcoleman-mtasks-viewer
 
-**Authors**: (2019) Mariano Ruiz <mrsarm@gmail.com>
+**Authors**: (2019-2021) Mariano Ruiz <mrsarm@gmail.com>
 
 **License**: AGPL-v3
