@@ -70,11 +70,27 @@ Settings
 +---------------------------+---------+----------------------------------+--------------------------------------------------------------+
 
 
+Docker
+------
+
+A reference `<Dockerfile>`_ is provided, that's is going to be published
+in Docker Hub *(in progress)*.
+
+Also a `<docker-compose.yml>`_ is provided, you can build and run the
+the app with Docker Compose with::
+
+    $ docker-compose up
+
+Although when using Docker Compose, it's recommended to use the compose
+file from the Django Coleman project instead of the local here, that
+allows to run all: Django Coleman, this Viewer app and Postgres at once.
+
+
 About
 -----
 
 **Project**: https://github.com/mrsarm/tornado-dcoleman-mtasks-viewer
 
-**Authors**: (2019-2021) Mariano Ruiz <mrsarm@gmail.com>
+**Authors**: (2019-2022) Mariano Ruiz <mrsarm@gmail.com>
 
 **License**: AGPL-v3
