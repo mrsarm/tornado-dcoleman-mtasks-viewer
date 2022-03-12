@@ -16,6 +16,8 @@ it's not a full featured, production ready application.
 Requirements
 ------------
 
+Docker, or:
+
 * Python 3.6+
 * Tornado framework installed (tested with version 6 and 6.1)
 * Django Coleman running at the URL pointed
@@ -73,8 +75,8 @@ Settings
 Docker
 ------
 
-A reference `<Dockerfile>`_ is provided, that's is going to be published
-in Docker Hub *(in progress)*.
+A reference `<Dockerfile>`_ is provided, and the image published
+in `Docker Hub <https://hub.docker.com/r/mrsarm/django-coleman-mtasks-viewer>`_.
 
 Also a `<docker-compose.yml>`_ is provided, you can build and run the
 the app with Docker Compose with::
