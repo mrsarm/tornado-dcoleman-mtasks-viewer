@@ -53,28 +53,28 @@
 
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb {{ state }}">
-            <li class="breadcrumb-item {% if state == 'to-do' %}active{% end %}">
+            <li class="breadcrumb-item {% if state == '00-to-do' %}active{% end %}">
               {% if state == '00-to-do' %}
                 <strong>To Do</strong>
               {% else %}
                 To Do
               {% end %}
             </li>
-            <li class="breadcrumb-item {% if state == 'in_progress' %}active{% end %}">
+            <li class="breadcrumb-item {% if state == '10-in-progress' %}active{% end %}">
               {% if state == '10-in-progress' %}
                 <strong>In Progress</strong>
               {% else %}
                 In Progress
               {% end %}
             </li>
-            <li class="breadcrumb-item {% if state == 'blocked' %}active{% end %}">
+            <li class="breadcrumb-item {% if state == '20-blocked' %}active{% end %}">
               {% if state == '20-blocked' %}
                 <strong>Blocked</strong>
               {% else %}
                 Blocked
               {% end %}
             </li>
-            <li class="breadcrumb-item {% if state == 'done' %}active{% end %}">
+            <li class="breadcrumb-item {% if state == '30-done' %}active{% end %}">
               {% if state == '30-done' %}
                 <strong>Done</strong>
               {% else %}
