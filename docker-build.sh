@@ -3,8 +3,6 @@
 # Get the tag
 if [ "$#" -gt 0 ] ; then
     export TAG="$1"
-#elif [ -n "$GITHUB_REF" ]; then
-#    export TAG=${GITHUB_REF##*/}
 else
     export TAG="latest"
 fi
@@ -21,5 +19,7 @@ GIT_HASH_SHORT=$(git rev-parse --short "$GIT_HASH")
 export BUILD=${GIT_BRANCH}.${GIT_HASH_SHORT}
 
 echo "Building mrsarm/django-coleman-mtasks-viewer:${TAG} with image_build $BUILD ..."
+
+set -x
 #docker-compose build
 docker build --build-arg=BUILD="$BUILD" -t mrsarm/django-coleman-mtasks-viewer:${TAG} .
