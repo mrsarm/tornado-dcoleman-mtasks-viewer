@@ -1,4 +1,4 @@
-FROM python:3.10-alpine
+FROM python:3.11-alpine3.19
 LABEL maintainer="Mariano Ruiz <mrsarm@gmail.com>"
 
 ENV PROCESS_TYPE="web" \
