@@ -18,7 +18,7 @@ Requirements
 
 Docker, or:
 
-* Python 3.6+
+* Python 3.8+
 * Tornado framework installed (tested with version 6 and 6.1)
 * Django Coleman running at the URL pointed
   by the ``DCOLEMAN_ENDPOINT`` environment
@@ -78,14 +78,11 @@ Docker
 A reference `<Dockerfile>`_ is provided, and the image published
 in `Docker Hub <https://hub.docker.com/r/mrsarm/django-coleman-mtasks-viewer>`_.
 
-Also a `<docker-compose.yml>`_ is provided, you can build and run the
-the app with Docker Compose with::
+Also a ``compose.yaml`` in the
+`dcoleman-e2e <https://github.com/mrsarm/dcoleman-e2e>`_ project is provided,
+you can build and run the app with Docker Compose with::
 
-    $ docker-compose up
-
-Although when using Docker Compose, it's recommended to use the compose
-file from the Django Coleman project instead of the local here, that
-allows to run all: Django Coleman, this Viewer app and Postgres at once.
+    $ docker compose up
 
 
 About
@@ -93,6 +90,6 @@ About
 
 **Project**: https://github.com/mrsarm/tornado-dcoleman-mtasks-viewer
 
-**Authors**: (2019-2022) Mariano Ruiz <mrsarm@gmail.com>
+**Authors**: (2019-2024) Mariano Ruiz <mrsarm@gmail.com>
 
 **License**: AGPL-v3
