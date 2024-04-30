@@ -51,13 +51,8 @@ jobs:
       run: cp .env.example .env
 
     - name: Build compose file for CI with pose
-      if: ${{ github.ref != 'refs/heads/master' }}
       run: |
         ./pose --no-docker config --tag $TAG --tag-filter regex=mrsarm/ --progress -o ci.yaml
-
-    - name: Create compose file for CI without pose
-      if: ${{ github.ref == 'refs/heads/master' }}
-      run: cp compose.yaml ci.yaml
 
     - name: Pull images
       run: docker compose -f ci.yaml pull
